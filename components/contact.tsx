@@ -53,7 +53,6 @@ export function Contact() {
       setTimeout(() => setSubmitted(false), 3000);
     } catch (error) {
       toast({
-        variant: 'destructive',
         title: 'Failed to send message',
         description: 'Something went wrong. Please try again later.',
       });
