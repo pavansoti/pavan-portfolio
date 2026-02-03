@@ -13,7 +13,7 @@ export function useScrollAnimation() {
         if (entry.isIntersecting) {
           setIsVisible(true);
         } else {
-          setIsVisible(false);
+          setIsVisible(false); 
         }
       },
       {
