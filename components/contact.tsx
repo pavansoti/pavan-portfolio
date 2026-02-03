@@ -216,7 +216,7 @@ export function Contact() {
                     type="submit"
                     size="lg"
                     className="w-full"
-                    disabled={submitted}
+                    disabled={submitted} 
                   >
                     {submitted ? '✓ Message Sent!' : 'Send Message'}
                   </Button>
