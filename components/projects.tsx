@@ -121,7 +121,7 @@ export function Projects() {
                   </div>
                 </div>
 
-                <div className="flex gap-3 mt-6 pt-6 border-t border-border">
+                {/* <div className="flex gap-3 mt-6 pt-6 border-t border-border">
                   <Button
                     size="sm"
                     variant="outline"
@@ -140,7 +140,7 @@ export function Projects() {
                     <Github size={16} />
                     Code
                   </Button>
-                </div>
+                </div> */}
               </Card>
             ))}
           </div>

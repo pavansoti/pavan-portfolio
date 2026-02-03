@@ -7,8 +7,11 @@ import { useScrollAnimation } from '@/hooks/use-scroll-animation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, Linkedin, Github, MapPin } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { useToast } from '@/hooks/use-toast'
 
 export function Contact() {
+  const { toast } = useToast();
   const { ref, isVisible } = useScrollAnimation();
   const [formData, setFormData] = useState({
     name: '',
@@ -24,35 +27,58 @@ export function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend service
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
+
+    try {
+      await emailjs.send(
+        'service_eb5fsal',     // SERVICE ID
+        'template_h18ors8',    // TEMPLATE ID
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          time: new Date().toLocaleString()
+        },
+        '7u8rtPDoPERkqWvyj'       // PUBLIC KEY
+      );
+
+      toast({
+        title: 'Message sent 🎉',
+        description: 'Thanks for reaching out! I’ll get back to you soon.',
+      });
+      setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
+
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Failed to send message',
+        description: 'Something went wrong. Please try again later.',
+      });
+    }
   };
 
   const contactInfo = [
     {
       icon: Mail,
       label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com',
+      value: 'pavansoti@gmail.com',
+      href: 'mailto:pavansoti@gmail.com',
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (234) 567-8900',
-      href: 'tel:+1234567890',
+      value: '(+91) 70321-59522',
+      href: 'tel:+917032159522',
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'Your City, Country',
-      href: '#',
+      value: 'Hyderabad, Telangana',
+      href: 'https://www.google.com/maps/place/SRI+VENKATESWARA+EXECUTIVE+MENS+PG+AND+HOSTAL/@17.4310595,78.3272603,18.41z/data=!4m6!3m5!1s0x3bcb93003ec7a2eb:0x4d8fadbb6cc2483a!8m2!3d17.4304398!4d78.3267175!16s%2Fg%2F11x21yyjzy?entry=ttu&g_ep=EgoyMDI2MDEyOC4wIKXMDSoASAFQAw%3D%3D',
+      external: true, 
     },
   ];
 
@@ -82,6 +108,8 @@ export function Contact() {
                   <a
                     key={index}
                     href={info.href}
+                    target={info.external ? '_blank' : undefined}
+                    rel={info.external ? 'noopener noreferrer' : undefined}
                     className="group stagger-item"
                     style={{
                       animationDelay: isVisible ? `${index * 0.1}s` : '0s',
@@ -108,7 +136,7 @@ export function Contact() {
                 <p className="text-sm font-semibold text-muted-foreground">Follow me:</p>
                 <div className="flex gap-4">
                   <a
-                    href="https://github.com"
+                    href="https://github.com/pavansoti"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -117,7 +145,7 @@ export function Contact() {
                     <Github size={20} />
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="https://linkedin.com/in/soti-pavan-singh-357079270"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -136,7 +164,7 @@ export function Contact() {
                 opacity: isVisible ? 1 : 0,
               }}>
               <Card className="p-8 bg-card border-border">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form suppressHydrationWarning onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
                       Name
