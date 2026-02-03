@@ -8,7 +8,7 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(true);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,10 +22,10 @@ export function Navigation() {
     setIsDark(!isDark);
     if (isDark) {
       document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      // sessionStorage.setItem('theme', 'light');
     } else {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      // sessionStorage.setItem('theme', 'dark');
     }
   };
 
@@ -52,7 +52,7 @@ export function Navigation() {
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <p href="#" className="text-2xl font-bold text-primary">
+          <p className="text-2xl font-bold text-primary">
             Soti Pavan Singh
           </p>
 

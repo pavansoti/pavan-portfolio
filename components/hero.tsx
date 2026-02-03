@@ -60,7 +60,7 @@ export function Hero() {
           {/* Social Links */}
           <div className="flex justify-center gap-6 pt-8">
             <a
-              href="https://github.com"
+              href="https://github.com/pavansoti"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary hover:bg-primary transition-colors hover:text-primary-foreground"
@@ -69,7 +69,7 @@ export function Hero() {
               <Github size={24} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/soti-pavan-singh-357079270"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-secondary hover:bg-primary transition-colors hover:text-primary-foreground"
@@ -78,14 +78,14 @@ export function Hero() {
               <Linkedin size={24} />
             </a>
             <a
-              href="mailto:your.email@example.com"
+              href="mailto:pavansoti@gmail.com"
               className="p-3 rounded-full bg-secondary hover:bg-primary transition-colors hover:text-primary-foreground"
               aria-label="Email"
             >
               <Mail size={24} />
             </a>
             <a
-              href="tel:+1234567890"
+              href="tel:+917032159522"
               className="p-3 rounded-full bg-secondary hover:bg-primary transition-colors hover:text-primary-foreground"
               aria-label="Phone"
             >
